@@ -15,9 +15,6 @@
     <!-- Favicon and Icons -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='%23333' stroke='%23fff' stroke-width='2'/%3E%3Ctext x='50' y='58' font-family='Arial' font-size='30' fill='%23fff' text-anchor='middle'%3EE%3C/text%3E%3C/svg%3E">
     
-    <!-- Apple Touch Icons -->
-    <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAWdEVYdENyZWF0aW9uIFRpbWUAMDcvMTUvMjAyM8VdnAAAABl0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAA8xSURBVHic7Z1NbBvXGYafGRKiKIqURFG0LEuybMmOYzt2ksTxT2wXBtoiaYsWKJAiRYEWbYu2QIGiQNugt957KXopeuuhRY9FgQI9FL0UKFq0QIu0QJsmjePYsR3Hjn9kS7Zk/VCiRZEUyeUwM5yZnZFIURQpkdK8ByAWZ2d35nvf973f94cjhBDCCScc8YlKXcARnXiKAQIBoA8g/T/t/2n/T/t/2v9H4lK3LAfAXVUVfaAI6AOp/0/7f9r/0/6f9v/k1LfU53pE6eHoHWFbL/+BQkD5f5IH6f/JPyD9J/8AkP+f/AOSB1L/n/SfyAMkDyRPIJIHkgeQPJC8D8mDyPuQPJC8D8mDyPuQD5Af+QTIB3wi8gHyo3L5lDECvP8m+SGlToIKI8AJ+hfH6F8sI/9YfsjPbq9G//8DnGYJwSRSBBsAAAAASUVORK5CYII=">
-    
     <!-- Web App Manifest -->
     <link rel="manifest" id="manifest-placeholder">
     
@@ -44,12 +41,10 @@
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
-            /* iOS Safari specific */
             -webkit-touch-callout: none;
             -webkit-text-size-adjust: 100%;
         }
 
-        /* Safe area for iPhone notch */
         .safe-area {
             padding-top: env(safe-area-inset-top);
             padding-bottom: env(safe-area-inset-bottom);
@@ -218,7 +213,7 @@
             position: relative;
             overflow: hidden;
             touch-action: manipulation;
-            min-height: 48px; /* Better touch target */
+            min-height: 48px;
         }
 
         .participate-btn {
@@ -412,6 +407,8 @@
             transition: transform 0.3s ease;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             max-width: calc(100% - 4rem);
+            opacity: 0;
+            pointer-events: none;
         }
 
         .notification.show {
@@ -483,7 +480,6 @@
             box-shadow: 0 0 0 3px rgba(136,136,136,0.1);
         }
 
-        /* Remove setas dos inputs de número */
         .form-group input[type="number"]::-webkit-outer-spin-button,
         .form-group input[type="number"]::-webkit-inner-spin-button {
             -webkit-appearance: none;
@@ -543,6 +539,264 @@
             color: black;
             border-color: #888;
             transform: translateY(-1px);
+        }
+
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 1rem;
+        }
+
+        .empty-state-text {
+            font-family: 'Cormorant', serif;
+            font-size: 2.5rem;
+            color: #888;
+            margin-bottom: 3rem;
+            font-weight: 400;
+        }
+
+        .empty-state-action {
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            background-color: transparent;
+            color: #888;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            touch-action: manipulation;
+            min-height: 48px;
+        }
+
+        .empty-state-action:hover,
+        .empty-state-action:active {
+            color: black;
+            border-color: #888;
+            transform: translateY(-1px);
+        }
+
+        /* Photo Upload Styles */
+        .photo-upload-section {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .photo-preview {
+            margin-bottom: 1rem;
+        }
+
+        .profile-photo-display img,
+        .photo-preview img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ccc;
+        }
+
+        .photo-upload-btn,
+        .change-photo-btn {
+            background: transparent;
+            border: 1px solid #e0e0e0;
+            color: #888;
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            touch-action: manipulation;
+            margin-top: 0.5rem;
+        }
+
+        .photo-upload-btn:hover,
+        .change-photo-btn:hover {
+            color: black;
+            border-color: #888;
+        }
+
+        .profile-photo {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .change-photo-btn {
+            display: block;
+            margin: 0.5rem auto 0;
+        }
+
+        /* Empty state */
+            text-align: center;
+            padding: 3rem 1rem;
+            color: #888;
+        }
+
+        .empty-state-text {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .empty-state-action {
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            touch-action: manipulation;
+        }
+
+        .empty-state-action:hover {
+            background-color: #555;
+            transform: translateY(-1px);
+        }
+
+        /* Profile Styles */
+        .profile-container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .profile-photo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .profile-photo-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .profile-info {
+            margin-bottom: 2rem;
+        }
+
+        .profile-field {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .profile-label {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 500;
+            text-transform: lowercase;
+        }
+
+        .profile-value {
+            font-size: 1rem;
+            color: #333;
+            font-weight: 400;
+            text-align: right;
+        }
+
+        .profile-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #666;
+            line-height: 1.2;
+        }
+
+        .profile-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+
+        .profile-btn {
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            touch-action: manipulation;
+            min-height: 48px;
+            flex: 1;
+            max-width: 150px;
+        }
+
+        .profile-btn.edit {
+            background-color: #333;
+            color: white;
+        }
+
+        .profile-btn.edit:hover,
+        .profile-btn.edit:active {
+            background-color: #555;
+            transform: translateY(-1px);
+        }
+
+        .profile-btn.settings {
+            background-color: transparent;
+            color: #888;
+            border: 1px solid #e0e0e0;
+        }
+
+        .profile-btn.settings:hover,
+        .profile-btn.settings:active {
+            color: black;
+            border-color: #888;
+            transform: translateY(-1px);
+        }
+
+        /* Mobile optimizations for profile */
+        @media (max-width: 768px) {
+            .profile-stats {
+                gap: 1.5rem;
+            }
+            
+            .stat-number {
+                font-size: 1.5rem;
+            }
+            
+            .stat-label {
+                font-size: 0.75rem;
+            }
+            
+            .profile-actions {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .profile-btn {
+                width: 100%;
+                max-width: none;
+            }
         }
 
         /* Install prompt */
@@ -643,7 +897,6 @@
             }
         }
 
-        /* Extra small screens */
         @media (max-width: 480px) {
             .menu-item {
                 font-size: 1.2rem;
@@ -663,7 +916,6 @@
             }
         }
 
-        /* Landscape phone optimization */
         @media (max-height: 500px) and (orientation: landscape) {
             .menu-container {
                 gap: 1rem;
@@ -705,9 +957,9 @@
 
     <div id="home-page" class="page">
         <div class="menu-container">
-            <div class="menu-item">meus eventos</div>
+            <div class="menu-item" onclick="showMeusEventosPage()">meus eventos</div>
             <div class="menu-item highlight" onclick="showCommunitiesPage()">comunidades</div>
-            <div class="menu-item">meu perfil</div>
+            <div class="menu-item" onclick="showPerfilPage()">meu perfil</div>
         </div>
     </div>
 
@@ -717,6 +969,169 @@
             <div class="menu-item" onclick="showSocialPage()">social</div>
             <div class="menu-item" onclick="showCulturaPage()">cultura</div>
             <div class="menu-item" onclick="showEsportePage()">esporte</div>
+        </div>
+    </div>
+
+    <div id="perfil-page" class="page hidden">
+        <button class="back-button" onclick="showHomePage()">← Voltar</button>
+        <div class="events-container">
+            <div class="page-title">meu perfil</div>
+            
+            <div class="profile-container">
+                <div class="profile-photo">
+                    <div class="profile-photo-display" id="profile-photo-display">
+                        <div class="profile-photo-circle" id="main-photo-circle">
+                            foto
+                        </div>
+                    </div>
+                    <button class="change-photo-btn" onclick="changeProfilePhoto()">alterar foto</button>
+                    <input type="file" id="main-photo-input" accept="image/*" style="display: none;">
+                </div>
+                
+                <div class="profile-info">
+                    <div class="profile-field">
+                        <div class="profile-label">nome</div>
+                        <div class="profile-value">ana beatriz silva</div>
+                    </div>
+                    
+                    <div class="profile-field">
+                        <div class="profile-label">idade</div>
+                        <div class="profile-value">28 anos</div>
+                    </div>
+                    
+                    <div class="profile-field">
+                        <div class="profile-label">profissão</div>
+                        <div class="profile-value">arquiteta</div>
+                    </div>
+                    
+                    <div class="profile-field">
+                        <div class="profile-label">nacionalidade</div>
+                        <div class="profile-value">portuguesa</div>
+                    </div>
+                    
+                    <div class="profile-field">
+                        <div class="profile-label">localização</div>
+                        <div class="profile-value">porto, portugal</div>
+                    </div>
+                </div>
+                
+                <div class="profile-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">15</div>
+                        <div class="stat-label">eventos participados</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">eventos criados</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">42</div>
+                        <div class="stat-label">conexões</div>
+                    </div>
+                </div>
+                
+                <div class="profile-actions">
+                    <button class="profile-btn edit" onclick="editProfile()">editar perfil</button>
+                    <button class="profile-btn settings" onclick="showSettings()">configurações</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="criar-perfil-page" class="page hidden">
+        <button class="back-button" onclick="showHomePage()">← Voltar</button>
+        <div class="events-container">
+            <div class="page-title">criar perfil</div>
+            <div class="event-organizer">complete suas informações para começar</div>
+            
+            <form id="criar-perfil-form" class="create-event-form">
+                <div class="form-group">
+                    <div class="photo-upload-section">
+                        <div class="photo-preview" id="photo-preview">
+                            <div class="profile-photo-circle" id="photo-circle">
+                                foto
+                            </div>
+                        </div>
+                        <input type="file" id="photo-input" accept="image/*" style="display: none;">
+                        <button type="button" class="photo-upload-btn" onclick="selectPhoto()">escolher foto</button>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <input type="text" id="profile-nome" placeholder="nome completo" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <input type="number" id="profile-idade" placeholder="idade" min="16" max="100" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="profile-profissao" placeholder="profissão" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <input type="text" id="profile-nacionalidade" placeholder="nacionalidade" required>
+                </div>
+                
+                <div class="form-group">
+                    <input type="text" id="profile-localizacao" placeholder="cidade, país" required>
+                </div>
+                
+                <div class="form-group">
+                    <textarea id="profile-bio" placeholder="fale um pouco sobre você (opcional)" rows="3"></textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="form-btn submit">criar perfil</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="meus-eventos-page" class="page hidden">
+        <button class="back-button" onclick="showHomePage()">← Voltar</button>
+        <div class="menu-container">
+            <div class="menu-item" onclick="showConfirmadosPage()">confirmados</div>
+            <div class="menu-item" onclick="showComInteressePage()">com interesse</div>
+            <div class="menu-item" onclick="showCriadosPage()">criados</div>
+        </div>
+    </div>
+
+    <!-- PÁGINAS DE MEUS EVENTOS -->
+    <div id="confirmados-page" class="page hidden">
+        <button class="back-button" onclick="showMeusEventosPage()">← Voltar</button>
+        <div class="events-container">
+            <div class="events-header">eventos confirmados para participar</div>
+            <div id="confirmados-events"></div>
+        </div>
+    </div>
+
+    <div id="com-interesse-page" class="page hidden">
+        <button class="back-button" onclick="showMeusEventosPage()">← Voltar</button>
+        <div class="events-container">
+            <div class="events-header">eventos marcados com interesse</div>
+            <div id="interesse-events"></div>
+        </div>
+    </div>
+
+    <div id="criados-page" class="page hidden">
+        <button class="back-button" onclick="showMeusEventosPage()">← Voltar</button>
+        <div class="events-container">
+            <div class="events-header">eventos que você criou</div>
+            <div class="event-line" onclick="showEventDetails('meu-evento-1')">
+                25 ago, 14:00 / workshop de arquitetura sustentável / faculdade de arquitetura / 8 confirmados
+            </div>
+            <div class="event-line" onclick="showEventDetails('meu-evento-2')">
+                28 ago, 10:00 / caminhada arquitetônica pelo centro / sé do porto / 12 confirmados
+            </div>
+            <div class="event-line" onclick="showEventDetails('meu-evento-3')">
+                5 set, 19:00 / debate sobre urbanismo moderno / biblioteca municipal / 15 confirmados
+            </div>
+            
+            <div class="create-event-container">
+                <button class="create-event-btn" onclick="showCommunitiesPage()">criar novo evento</button>
+            </div>
         </div>
     </div>
 
@@ -998,7 +1413,6 @@
         </div>
     </div>
 
-    <!-- Exemplo de mais eventos de música -->
     <div id="event-jam-session" class="page hidden">
         <button class="back-button" onclick="showMusicaPage()">← Voltar</button>
         <div class="events-container">
@@ -1021,7 +1435,6 @@
         </div>
     </div>
 
-    <!-- Exemplo de evento de cinema -->
     <div id="event-cinema-1" class="page hidden">
         <button class="back-button" onclick="showCinemaPage()">← Voltar</button>
         <div class="events-container">
@@ -1044,7 +1457,6 @@
         </div>
     </div>
 
-    <!-- Exemplo de evento de literatura -->
     <div id="event-literatura-1" class="page hidden">
         <button class="back-button" onclick="showLiteraturaPage()">← Voltar</button>
         <div class="events-container">
@@ -1067,7 +1479,6 @@
         </div>
     </div>
 
-    <!-- Exemplo de evento happy hour -->
     <div id="event-happy-1" class="page hidden">
         <button class="back-button" onclick="showHappyHourPage()">← Voltar</button>
         <div class="events-container">
@@ -1090,7 +1501,6 @@
         </div>
     </div>
 
-    <!-- Exemplo de evento de futebol -->
     <div id="event-futebol-1" class="page hidden">
         <button class="back-button" onclick="showFutebolPage()">← Voltar</button>
         <div class="events-container">
@@ -1113,7 +1523,6 @@
         </div>
     </div>
 
-    <!-- Exemplo de evento de tênis -->
     <div id="event-tenis-1" class="page hidden">
         <button class="back-button" onclick="showTenisPage()">← Voltar</button>
         <div class="events-container">
@@ -1194,7 +1603,6 @@
                             event.respondWith(
                                 caches.match(event.request)
                                     .then(response => {
-                                        // Return cached version or fetch from network
                                         return response || fetch(event.request);
                                     })
                             );
@@ -1236,12 +1644,10 @@
             const installBtn = document.getElementById('install-btn');
             const dismissBtn = document.getElementById('dismiss-install');
 
-            // Check if already shown or installed
             if (installPromptShown || window.matchMedia('(display-mode: standalone)').matches) {
                 return;
             }
 
-            // Show after 10 seconds if BeforeInstallPrompt hasn't fired
             setTimeout(() => {
                 if (!installPromptShown && !deferredPrompt) {
                     installPrompt.classList.add('show');
@@ -1251,7 +1657,6 @@
                         installPrompt.classList.remove('show');
                     };
 
-                    // For iOS, show instructions
                     if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
                         installBtn.textContent = 'Instruções';
                         installBtn.onclick = () => {
@@ -1296,8 +1701,18 @@
             deferredPrompt = null;
         });
 
-        // Estado dos eventos - armazenamento em memória
+        // Estado dos eventos e perfil - armazenamento em memória
         const eventState = {};
+        let profileCreated = false;
+        const userProfile = {
+            nome: '',
+            idade: '',
+            profissao: '',
+            nacionalidade: '',
+            localizacao: '',
+            bio: '',
+            foto: null
+        };
         
         // Dados dos eventos
         const eventsData = {
@@ -1394,6 +1809,7 @@
         // Funções de navegação
         function hideAllPages() {
             const pages = ['home-page', 'communities-page', 'social-page', 'cultura-page', 'esporte-page', 
+                          'perfil-page', 'criar-perfil-page', 'meus-eventos-page', 'confirmados-page', 'com-interesse-page', 'criados-page',
                           'musica-page', 'cinema-page', 'literatura-page', 'happy-hour-page', 'refeicoes-page', 
                           'encontros-page', 'tenis-page', 'futebol-page', 'padel-page', 'create-event-page',
                           'event-jazz-cafe', 'event-fado-moderno', 'event-jam-session', 'event-festival-indie', 'event-karaoke',
@@ -1474,6 +1890,103 @@
             document.getElementById('padel-page').classList.remove('hidden');
         }
 
+        function showPerfilPage() {
+            hideAllPages();
+            if (profileCreated) {
+                document.getElementById('perfil-page').classList.remove('hidden');
+                updateProfileDisplay();
+            } else {
+                document.getElementById('criar-perfil-page').classList.remove('hidden');
+            }
+        }
+
+        function updateProfileDisplay() {
+            if (profileCreated) {
+                document.querySelector('#perfil-page .profile-field:nth-child(1) .profile-value').textContent = userProfile.nome;
+                document.querySelector('#perfil-page .profile-field:nth-child(2) .profile-value').textContent = userProfile.idade + ' anos';
+                document.querySelector('#perfil-page .profile-field:nth-child(3) .profile-value').textContent = userProfile.profissao;
+                document.querySelector('#perfil-page .profile-field:nth-child(4) .profile-value').textContent = userProfile.nacionalidade;
+                document.querySelector('#perfil-page .profile-field:nth-child(5) .profile-value').textContent = userProfile.localizacao;
+                
+                // Atualizar foto do perfil
+                const photoDisplay = document.getElementById('profile-photo-display');
+                if (userProfile.foto) {
+                    photoDisplay.innerHTML = `<img src="${userProfile.foto}" alt="Foto de perfil">`;
+                } else {
+                    photoDisplay.innerHTML = '<div class="profile-photo-circle" id="main-photo-circle">foto</div>';
+                }
+            }
+        }
+
+        // Funções de upload de foto
+        function selectPhoto() {
+            document.getElementById('photo-input').click();
+        }
+
+        function changeProfilePhoto() {
+            document.getElementById('main-photo-input').click();
+        }
+
+        function handlePhotoUpload(inputId, previewId) {
+            const input = document.getElementById(inputId);
+            const file = input.files[0];
+            
+            if (file) {
+                // Validar tipo de arquivo
+                if (!file.type.startsWith('image/')) {
+                    showNotification('Por favor, selecione apenas arquivos de imagem', 'error');
+                    return;
+                }
+                
+                // Validar tamanho (máximo 5MB)
+                if (file.size > 5 * 1024 * 1024) {
+                    showNotification('Imagem muito grande. Máximo 5MB permitido', 'error');
+                    return;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imageData = e.target.result;
+                    
+                    // Atualizar preview
+                    const previewContainer = document.getElementById(previewId);
+                    if (previewContainer) {
+                        previewContainer.innerHTML = `<img src="${imageData}" alt="Preview da foto">`;
+                    }
+                    
+                    // Salvar no perfil se estiver na página principal
+                    if (inputId === 'main-photo-input') {
+                        userProfile.foto = imageData;
+                        updateProfileDisplay();
+                        showNotification('Foto atualizada com sucesso!');
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function showMeusEventosPage() {
+            hideAllPages();
+            document.getElementById('meus-eventos-page').classList.remove('hidden');
+        }
+
+        function showConfirmadosPage() {
+            hideAllPages();
+            document.getElementById('confirmados-page').classList.remove('hidden');
+            loadConfirmadosEvents();
+        }
+
+        function showComInteressePage() {
+            hideAllPages();
+            document.getElementById('com-interesse-page').classList.remove('hidden');
+            loadInteresseEvents();
+        }
+
+        function showCriadosPage() {
+            hideAllPages();
+            document.getElementById('criados-page').classList.remove('hidden');
+        }
+
         function showEventDetails(eventId) {
             hideAllPages();
             const eventPage = document.getElementById('event-' + eventId);
@@ -1503,7 +2016,6 @@
             const confirmBtn = document.getElementById('confirmBtn');
             const cancelBtn = document.getElementById('cancelBtn');
             
-            // Remove listeners anteriores
             confirmBtn.onclick = null;
             cancelBtn.onclick = null;
             
@@ -1526,12 +2038,10 @@
             const button = document.getElementById(eventId + '-btn');
             
             if (isParticipating) {
-                // Cancelar participação
                 showModal(
                     'Cancelar Participação',
                     `Deseja cancelar sua participação no evento "${event.title}"?`,
                     () => {
-                        // Simula loading
                         button.innerHTML = '<span class="loading"></span> Processando...';
                         button.disabled = true;
                         
@@ -1545,18 +2055,15 @@
                     }
                 );
             } else {
-                // Verificar se ainda há vagas
                 if (event.currentCount >= event.maxParticipants) {
                     showNotification('Evento lotado! Não há mais vagas disponíveis.', 'error');
                     return;
                 }
                 
-                // Confirmar participação
                 showModal(
                     'Confirmar Participação',
                     `Deseja confirmar sua participação no evento "${event.title}"?`,
                     () => {
-                        // Simula loading
                         button.innerHTML = '<span class="loading"></span> Processando...';
                         button.disabled = true;
                         
@@ -1614,9 +2121,8 @@
             const event = eventsData[eventId];
             if (!event) return;
 
-            // Criar arquivo .ics
-            const startDate = new Date('2024-08-22T21:00:00'); // Data exemplo
-            const endDate = new Date(startDate.getTime() + 2 * 60 * 60 * 1000); // +2 horas
+            const startDate = new Date('2024-08-22T21:00:00');
+            const endDate = new Date(startDate.getTime() + 2 * 60 * 60 * 1000);
             
             const formatDate = (date) => {
                 return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
@@ -1636,7 +2142,6 @@ LOCATION:${event.address}
 END:VEVENT
 END:VCALENDAR`;
 
-            // Criar e baixar arquivo
             const blob = new Blob([icsContent], { type: 'text/calendar' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
@@ -1656,7 +2161,6 @@ END:VCALENDAR`;
             const button = document.querySelector(`[onclick="shareEventLink('${eventId}')"]`);
             
             try {
-                // Tentar usar a API nativa de compartilhamento (mobile)
                 if (navigator.share) {
                     await navigator.share({
                         title: eventsData[eventId]?.title || 'Evento',
@@ -1664,10 +2168,8 @@ END:VCALENDAR`;
                     });
                     showNotification('Link compartilhado!');
                 } else {
-                    // Fallback para desktop - copiar para clipboard
                     await navigator.clipboard.writeText(eventUrl);
                     
-                    // Feedback visual
                     const originalText = button.textContent;
                     button.textContent = 'link copiado!';
                     button.classList.add('copied');
@@ -1691,7 +2193,6 @@ END:VCALENDAR`;
         function showCreateEventPage(category) {
             currentCreateEventCategory = category;
             
-            // Determinar qual página chamar de volta
             const categoryPageMap = {
                 'musica': 'musica-page',
                 'cinema': 'cinema-page', 
@@ -1706,7 +2207,6 @@ END:VCALENDAR`;
             
             previousPageFromCreateEvent = categoryPageMap[category] || 'home-page';
             
-            // Atualizar categoria no formulário
             const categoryNames = {
                 'musica': 'música',
                 'cinema': 'cinema',
@@ -1756,14 +2256,11 @@ END:VCALENDAR`;
             submitBtn.innerHTML = '<span class="loading"></span> Criando...';
             submitBtn.disabled = true;
             
-            // Simular criação do evento
             setTimeout(() => {
                 showNotification('Evento criado com sucesso!');
                 
-                // Reset form
                 document.getElementById('create-event-form').reset();
                 
-                // Voltar para página anterior
                 setTimeout(() => {
                     goBackFromCreateEvent();
                 }, 1000);
@@ -1775,7 +2272,6 @@ END:VCALENDAR`;
             showCreateEventPage(category);
         }
 
-        // Placeholder para outras páginas não implementadas
         function showOutrosSocialPage() {
             showNotification('Página em desenvolvimento', 'error');
         }
@@ -1788,7 +2284,123 @@ END:VCALENDAR`;
             showNotification('Página em desenvolvimento', 'error');
         }
 
-        // Fechar modal ao clicar fora dele
+        // Funções do perfil
+        function editProfile() {
+            showNotification('Funcionalidade de edição em desenvolvimento');
+        }
+
+        function showSettings() {
+            showNotification('Configurações em desenvolvimento');
+        }
+
+        function handleCreateProfileForm(event) {
+            event.preventDefault();
+            
+            // Obter dados da foto se existir
+            const photoPreview = document.querySelector('#photo-preview img');
+            const photoData = photoPreview ? photoPreview.src : null;
+            
+            const formData = {
+                nome: document.getElementById('profile-nome').value,
+                idade: document.getElementById('profile-idade').value,
+                profissao: document.getElementById('profile-profissao').value,
+                nacionalidade: document.getElementById('profile-nacionalidade').value,
+                localizacao: document.getElementById('profile-localizacao').value,
+                bio: document.getElementById('profile-bio').value,
+                foto: photoData
+            };
+            
+            const submitBtn = event.target.querySelector('.form-btn.submit');
+            submitBtn.innerHTML = '<span class="loading"></span> Criando perfil...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                // Salvar dados do perfil
+                Object.assign(userProfile, formData);
+                profileCreated = true;
+                
+                showNotification('Perfil criado com sucesso!');
+                
+                // Ir para a página do perfil
+                setTimeout(() => {
+                    showPerfilPage();
+                }, 1000);
+                
+            }, 2000);
+        }
+
+        // Funções de Meus Eventos
+        // Funções de Meus Eventos
+        function loadConfirmadosEvents() {
+            const confirmadosContainer = document.getElementById('confirmados-events');
+            const confirmedEvents = [];
+            
+            // Buscar eventos confirmados baseado no eventState
+            Object.keys(eventState).forEach(eventId => {
+                if (eventState[eventId]?.participating && eventsData[eventId]) {
+                    confirmedEvents.push({
+                        id: eventId,
+                        ...eventsData[eventId]
+                    });
+                }
+            });
+            
+            if (confirmedEvents.length === 0) {
+                confirmadosContainer.innerHTML = `
+                    <div class="empty-state">
+                        <button class="empty-state-action" onclick="showCommunitiesPage()">explorar eventos</button>
+                    </div>
+                `;
+            } else {
+                confirmadosContainer.innerHTML = confirmedEvents.map(event => `
+                    <div class="event-line" onclick="showEventDetails('${event.id}')">
+                        ${formatEventDate(event.date)} / ${event.title.toLowerCase()} / ${event.location.toLowerCase()} / confirmado
+                    </div>
+                `).join('');
+            }
+        }
+
+        function loadInteresseEvents() {
+            const interesseContainer = document.getElementById('interesse-events');
+            const interestedEvents = [];
+            
+            // Buscar eventos com interesse baseado no eventState
+            Object.keys(eventState).forEach(eventId => {
+                if (eventState[eventId]?.interested && eventsData[eventId]) {
+                    interestedEvents.push({
+                        id: eventId,
+                        ...eventsData[eventId]
+                    });
+                }
+            });
+            
+            if (interestedEvents.length === 0) {
+                interesseContainer.innerHTML = `
+                    <div class="empty-state">
+                        <button class="empty-state-action" onclick="showCommunitiesPage()">explorar eventos</button>
+                    </div>
+                `;
+            } else {
+                interesseContainer.innerHTML = interestedEvents.map(event => `
+                    <div class="event-line" onclick="showEventDetails('${event.id}')">
+                        ${formatEventDate(event.date)} / ${event.title.toLowerCase()} / ${event.location.toLowerCase()} / com interesse
+                    </div>
+                `).join('');
+            }
+        }
+
+        function formatEventDate(dateStr) {
+            // Função auxiliar para formatar datas
+            const months = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 
+                           'jul', 'ago', 'set', 'out', 'nov', 'dez'];
+            const date = new Date(dateStr);
+            return `${date.getDate()} ${months[date.getMonth()]}`;
+        }
+
+        function editEvent(eventId) {
+            showNotification('Edição de eventos em desenvolvimento');
+        }
+
         window.onclick = function(event) {
             const modal = document.getElementById('confirmModal');
             if (event.target === modal) {
@@ -1796,14 +2408,11 @@ END:VCALENDAR`;
             }
         }
 
-        // Inicialização
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize PWA features
             generateManifest();
             registerServiceWorker();
             showInstallPrompt();
             
-            // Verificar se há um hash na URL para abrir evento específico
             if (window.location.hash) {
                 const eventId = window.location.hash.substring(1);
                 if (eventId.startsWith('event-')) {
@@ -1812,10 +2421,10 @@ END:VCALENDAR`;
                 }
             }
             
-            // Adicionar event listener ao formulário
+            // Event listeners para formulários
             document.getElementById('create-event-form').addEventListener('submit', handleCreateEventForm);
+            document.getElementById('criar-perfil-form').addEventListener('submit', handleCreateProfileForm);
             
-            // Prevent zoom on double tap for iOS
             let lastTouchEnd = 0;
             document.addEventListener('touchend', function (event) {
                 const now = (new Date()).getTime();
@@ -1825,7 +2434,6 @@ END:VCALENDAR`;
                 lastTouchEnd = now;
             }, false);
             
-            // Handle viewport changes for mobile keyboards
             function handleViewportChange() {
                 const vh = window.innerHeight * 0.01;
                 document.documentElement.style.setProperty('--vh', `${vh}px`);
@@ -1835,7 +2443,6 @@ END:VCALENDAR`;
             handleViewportChange();
         });
 
-        // Handle network status
         window.addEventListener('online', () => {
             showNotification('Conexão restaurada', 'success');
         });
@@ -1845,14 +2452,4 @@ END:VCALENDAR`;
         });
     </script>
 </body>
-</html>,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAWdEVYdENyZWF0aW9uIFRpbWUAMDcvMTUvMjAyM8VdnQAAABl0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAA8xSURBVHic7Z1NbBvXGYafGRKiKIqURFG0LEuybMmOYzt2ksTxT2wXBtoiaYsWKJAiRYEWbYu2QIGiQNugt957KXopeuuhRY9FgQI9FL0UKFq0QIu0QJsmjePYsR3Hjn9kS7Zk/VCiRZEUyeUwM5yZnZFIURQpkdK8ByAWZ2d35nvf973f94cjhBDCCScc8YlKXcARnXiKAQIBoA8g/T/t/2n/T/t/2v9H4lK3LAfAXVUVfaAI6AOp/0/7f9r/0/6f9v/k1LfU53pE6eHoHWFbL/+BQkD5f5IH6f/JPyD9J/8AkP+f/AOSB1L/n/SfyAMkDyRPIJIHkgeQPJC8D8mDyPuQPJC8D8mDyPuQD5Af+QTIB3wi8gHyo3L5lDECvP8m+SGlToIKI8AJ+hfH6F8sI/9YfsjPbq9G//8DnGYJwSRSBBsAAAAASUVORK5CYII=",
-                    sizes: "64x64",
-                    type: "image/png"
-                },
-                {
-                    src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAWdEVYdENyZWF0aW9uIFRpbWUAMDcvMTUvMjAyM8VdnAAAABl0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAA8xSURBVHic7Z1NbBvXGYafGRKiKIqURFG0LEuybMmOYzt2ksTxT2wXBtoiaYsWKJAiRYEWbYu2QIGiQNugt957KXopeuuhRY9FgQI9FL0UKFq0QIu0QJsmjePYsR3Hjn9kS7Zk/VCiRZEUyeUwM5yZnZFIURQpkdK8ByAWZ2d35nvf973f94cjhBDCCScc8YlKXcARnXiKAQIBoA8g/T/t/2n/T/t/2v9H4lK3LAfAXVUVfaAI6AOp/0/7f9r/0/6f9v/k1LfU53pE6eHoHWFbL/+BQkD5f5IH6f/JPyD9J/8AkP+f/AOSB1L/n/SfyAMkDyRPIJIHkgeQPJC8D8mDyPuQPJC8D8mDyPuQD5Af+QTIB3wi8gHyo3L5lDECvP8m+SGlToIKI8AJ+hfH6F8sI/9YfsjPbq9G//8DnGYJwSRSBBsAAAAASUVORK5CYII=",
-                    sizes: "128x128",
-                    type: "image/png"
-                },
-                {
-                    src: "data:image/png;base64
+</html>
